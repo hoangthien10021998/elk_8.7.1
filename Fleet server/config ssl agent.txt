@@ -1,0 +1,90 @@
+/home/*/*/logs/error.log
+grep -Ev '^#|^$' 
+https://172.16.10.60:8220
+
+AAEAAWVsYXN0aWMvZmxlZXQtc2VydmVyL3Rva2VuLTE2ODIzMDg5NDU0MTU6TmhWZjRrS2FUTVNZbVpoXzlpckhFdw
+
+sudo ./elastic-agent install --url=https://172.16.10.60:8220 \
+  --fleet-server-es=https://172.16.10.52:9200 \
+  --fleet-server-service-token=AAEAAWVsYXN0aWMvZmxlZXQtc2VydmVyL3Rva2VuLTE2ODIzMjE2ODQyMTA6WWdiMkVTSWVUWWFXTkVnamtsS0lndw \
+  --fleet-server-policy=fleet-server-policy \
+  --certificate-authorities=/etc/kibana/certs/elastic.pem \
+  --fleet-server-es-ca=/etc/kibana/certs/elastic.pem \
+  --fleet-server-cert=/etc/kibana/certs/fleet-server.crt \
+  --fleet-server-cert-key=/etc/kibana/certs/fleet-server.key
+
+---
+cd elastic-agent-8.6.2-linux-x86_64
+sudo ./elastic-agent install --url=https://172.16.10.60:8220 --enrollment-token=R0lwUnNvY0I0bEdmZW5FWjNCTUE6V2Q1Yi13LUtTV0dKZ1VFY20tUWU1Zw== --certificate-authorities=/opt/elastic.pem --fleet-server-es-ca=/opt/elastic.pem --fleet-server-cert=/opt/fleet-server.crt --fleet-server-cert-key=/opt/fleet-server.key
+
+
+
+curl -L -O https://artifacts.elastic.co/downloads/beats/elastic-agent/elastic-agent-8.6.2-linux-x86_64.tar.gz
+tar xzvf elastic-agent-8.6.2-linux-x86_64.tar.gz
+cd elastic-agent-8.6.2-linux-x86_64
+sudo ./elastic-agent install --url=https://172.16.10.60:8220 \
+  --fleet-server-es=https://172.16.10.52:9200 \
+  --fleet-server-service-token=AAEAAWVsYXN0aWMvZmxlZXQtc2VydmVyL3Rva2VuLTE2ODIzMjE2ODQyMTA6WWdiMkVTSWVUWWFXTkVnamtsS0lndw \
+  --fleet-server-policy=fleet-server-policy \
+  --certificate-authorities=/etc/kibana/certs/elastic.pem \
+  --fleet-server-es-ca=/etc/kibana/certs/elastic.pem \
+  --fleet-server-cert=/etc/kibana/certs/fleet-server.crt \
+  --fleet-server-cert-key=/etc/kibana/certs/fleet-server.key
+
+
+cd /root
+cd elastic-agent-8.6.2-linux-x86_64
+sudo ./elastic-agent install --url=https://172.16.10.60:8220 --enrollment-token=cFRWdXNvY0J0OWFXV1V3X3RVTjc6bUJnNGJCUlVSRW11cUluM3FPdm16dw== --certificate-authorities=/opt/elastic.pem --fleet-server-es-ca=/opt/elastic.pem --fleet-server-cert=/opt/fleet-server.crt --fleet-server-cert-key=/opt/fleet-server.key
+========================
+Để tạo một tệp tin cấu hình Elastic Agent đầy đủ, bạn có thể làm theo các bước sau:
+
+Bắt đầu bằng việc tạo một tệp tin mới và đặt tên là elastic-agent.yml. Bạn có thể sử dụng trình soạn thảo văn bản như Nano hoặc Vim để thực hiện việc này.
+
+Bắt đầu cấu hình bằng việc thêm phần fleet vào tệp tin. Phần này cần đặt enabled là true để cho phép Elastic Agent kết nối và gửi dữ liệu đến Fleet Server.
+
+Copy
+fleet:
+  enabled: true
+Tiếp theo, bạn cần thêm phần output để chỉ định nơi dữ liệu của Elastic Agent sẽ được gửi đến. Ví dụ, nếu bạn muốn gửi dữ liệu đến Elasticsearch, bạn có thể sử dụng cấu hình như sau:
+Copy
+output.elasticsearch:
+  hosts: ["http://my-elasticsearch-host:9200"]
+  username: "elastic"
+  password: "mypassword"
+Nếu bạn muốn sử dụng SSL/TLS để bảo mật kết nối, bạn có thể thêm phần ssl vào phần output.elasticsearch. Ví dụ:
+stylus
+Copy
+output.elasticsearch:
+  hosts: ["https://my-elasticsearch-host:9200"]
+  username: "elastic"
+  password: "mypassword"
+  ssl.certificate_authorities: ["/path/to/ca.crt"]
+  ssl.certificate: "/path/to/client.crt"
+  ssl.key: "/path/to/client.key"
+Nếu bạn đang sử dụng Fleet Server, bạn cần chỉ định các thông tin kết nối đến Fleet Server bằng cách thêm phần fleet vào phần output. Ví dụ:
+dts
+Copy
+output:
+  fleet:
+    hosts: ["http://my-fleet-server-host:8220"]
+    username: "elastic"
+    password: "mypassword"
+    ssl.certificate_authorities: ["/path/to/ca.crt"]
+    ssl.certificate: "/path/to/client.crt"
+    ssl.key: "/path/to/client.key"
+Cuối cùng, bạn có thể thêm các phần cấu hình khác như inputs để chỉ định loại dữ liệu mà Elastic Agent thu thập, hoặc logging để cấu hình nhật ký. Ví dụ:
+vim
+Copy
+inputs:
+  - type: log
+    paths:
+      - /var/log/messages
+      - /var/log/syslog
+
+logging:
+  level: info
+  to_files: true
+  files:
+    path: /var/log/elastic-agent/
+Sau khi bạn tạo xong tệp tin cấu hình, bạn có thể khởi động Elastic Agent để áp dụng các thay đổi. Vui lòng đảm bảo rằng các thông tin cấu hình được đặt đúng và xác thực là chính xác để đảm bảo rằng Elastic Agent có thể kết nối và gửi dữ liệu đến đúng địa chỉ và cổng.
+

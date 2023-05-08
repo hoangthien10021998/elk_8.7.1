@@ -1,0 +1,58 @@
+tao file pem cho fleet agen va fleet server
+
+   95 cd /usr/share/elasticsearch/bin/
+   96  ./bin/elasticsearch-certutil ca --pem
+   98  ./bin/elasticsearch-certutil ca --pem
+   99  ll
+  100  unzip elastic-stack-ca.zip
+  101  apt -y install unzip
+  102  yum -y install unzip
+  103  unzip elastic-stack-ca.zip
+  104  ll
+  105  pwd
+  106  ./bin/elasticsearch-certutil cert   --name fleet-server   --ca-cert /usr/share/elasticsearch/ca/ca.crt   --ca-key /usr/share/elasticsearch/ca/ca.key   --ip 172.16.10.60   --pem
+  107  ll
+  108  pwd
+  109  ll
+  110  openssl x509 -fingerprint -sha256 -in config/http_ca.crt
+  111  openssl x509 -fingerprint -sha256 -in http_ca.crt
+  112  openssl x509 -in http_ca.crt -noout -fingerprint -sha256 | awk -F= '{print $2}' | tr -d ':\n' | base64
+  113  ll
+  114  cd ca
+  115  ll
+  116  touch elastic.pem
+  117  join ca.crt ca.key > elastic.pem
+  118  vi tou
+  119  cat ca.crt
+  120  vi elastic.pem
+  121  cat ca.key
+  122  vi elastic.pem
+  123  cat ca.key
+  124  vi elastic.pem
+  125  history
+==============================
+CA: /usr/share/elasticsearch/ca/
+tao CA : ./bin/ elaticsearch - certutil ca -- pem
+Lệnh này tạo một tệp zip chứa chứng chỉ CA và khóa mà bạn sẽ sử dụng để ký chứng chỉ Máy chủ Fleet. Giải nén tệp zip: ta co 2 file ca.key va ca.crt
+Sử dụng CA cấp chứng chỉ để tạo chứng chỉ cho Máy chủ fleet. Ví dụ:
+./bin/elasticsearch-certutil cert \
+  --name fleet-server \
+  --ca-cert /path/to/ca/ca.crt \
+  --ca-key /path/to/ca/ca.key \
+  --ip 192.0.2.1 \
+  --pem
+ta nhan dc file zip va giai nen ra ta co2 file fleet-server.crt and fleet-server.key file
+------connect fleet server
+sudo ./elastic-agent enroll --url=https://172.16.10.60:8220 \
+  --fleet-server-es=https://172.16.10.52:9200 \
+  --fleet-server-service-token=AAEAAWVsYXN0aWMvZmxlZXQtc2VydmVyL3Rva2VuLTE2ODIzMDU5NjE4OTE6aVRONlJNeHJSNHkyT3dIQmFHNTBpZw \
+  --fleet-server-policy=fleet-server-policy \
+  --certificate-authorities=/etc/kibana/certs/elastic.pem \
+  --fleet-server-es-ca=/etc/kibana/certs/elastic.pem \
+  --fleet-server-cert=/etc/kibana/certs/fleet-server.crt \
+  --fleet-server-cert-key=/etc/kibana/certs/fleet-server.key
+
+file .pem ta dung
+2 file ca.key va ca.crt
+va file http_ca.crt
+gom thanh 1 file elastic.pem

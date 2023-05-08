@@ -1,0 +1,42 @@
+./bin/elasticsearch-certutil cert \
+  --name fleet-server \
+  --ca-cert /usr/share/elasticsearch/ca/ca.crt \
+  --ca-key /usr/share/elasticsearch/ca/ca.key \
+  --ip 172.16.10.60 \
+  --pem
+============
+sudo ./elastic-agent install --url=https://172.16.10.60:8220 \
+  --fleet-server-es=https://172.16.10.52:9200 \
+  --fleet-server-service-token=AAEAAWVsYXN0aWMvZmxlZXQtc2VydmVyL3Rva2VuLTE2ODIzMDg5NDU0MTU6TmhWZjRrS2FUTVNZbVpoXzlpckhFdw \
+  --fleet-server-policy=fleet-server-policy \
+  --certificate-authorities=/etc/kibana/certs/elastic.pem \
+  --fleet-server-es-ca=/etc/kibana/certs/elastic.pem \
+  --fleet-server-cert=/etc/kibana/certs/fleet-server.crt \
+  --fleet-server-cert-key=/etc/kibana/certs/fleet-server.key
+
+
+====
+sudo ./elastic-agent install --url=https://172.16.10.60:8220 \
+  --fleet-server-es=https://172.16.10.52:9200 \
+  --fleet-server-service-token=AAEAAWVsYXN0aWMvZmxlZXQtc2VydmVyL3Rva2VuLTE2ODIzMDg5NDU0MTU6TmhWZjRrS2FUTVNZbVpoXzlpckhFdw \
+  --fleet-server-policy=fleet-server-policy \
+  --certificate-authorities=/opt/Elastic/elastic.pem \
+  --fleet-server-es-ca=/opt/Elastic/elastic.pem \
+  --fleet-server-cert=/opt/Elastic/fleet-server.crt \
+  --fleet-server-cert-key=/opt/Elastic/fleet-server.key
+
+
+sudo ./elastic-agent install --url=https://172.16.10.60:8220 --enrollment-token=Vm9tTXNZY0I0bEdmZW5FWk12OU86VHBjRWNXMkFSS3VxTGRBUjl4OTRyQQ== --certificate-authorities=/opt/Elastic/elastic.pem --fleet-server-es-ca=/opt/Elastic/elastic.pem --fleet-server-cert=/opt/Elastic/fleet-server.crt --fleet-server-cert-key=/opt/Elastic/fleet-server.key
+
+
+
+sudo ./elastic-agent enroll --url=https://172.16.10.60:8220 --enrollment-token=NVZ1WXNZY0JDX2tpNzJ1V0NDX286S0NDbGF1Nk1UelcyeGxLMnhrd1dxQQ== --certificate-authorities=/opt/Elastic/elastic.pem --fleet-server-es-ca=/opt/Elastic/elastic.pem --fleet-server-cert=/opt/Elastic/fleet-server.crt --fleet-server-cert-key=/opt/Elastic/fleet-server.key
+======
+sudo ./elastic-agent enroll \
+  --fleet-server-es=https://172.16.10.52:9200 \
+  --fleet-server-service-token=AAEAAWVsYXN0aWMvZmxlZXQtc2VydmVyL3Rva2VuLTE2ODIzMjA2NTU2Mjc6TU9MdWU2LWRRTFM4UmIwMkYyNXFyZw \
+  --fleet-server-policy=fleet-server-policy
+  --certificate-authorities=/etc/kibana/certs/elastic.pem \
+  --fleet-server-es-ca=/etc/kibana/certs/elastic.pem \
+  --fleet-server-cert=/etc/kibana/certs/fleet-server.crt \
+  --fleet-server-cert-key=/etc/kibana/certs/fleet-server.key
