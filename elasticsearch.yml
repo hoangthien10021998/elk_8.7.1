@@ -20,7 +20,7 @@ cluster.name: dc-elk
 #
 # Use a descriptive name for the node:
 #
-node.name: node2
+node.name: node1
 #
 # Add custom attributes to the node:
 #
@@ -53,7 +53,7 @@ path.logs: /var/log/elasticsearch
 # By default Elasticsearch is only accessible on localhost. Set a different
 # address here to expose this node on the network:
 #
-network.host: 10.100.170.51
+network.host: 10.100.170.50
 #
 # By default Elasticsearch listens for HTTP traffic on the first free port it
 # finds starting at 9200. Set a specific HTTP port here:
@@ -84,7 +84,7 @@ http.port: 9200
 #----------------------- BEGIN SECURITY AUTO CONFIGURATION -----------------------
 #
 # The following settings, TLS certificates, and keys have been automatically      
-# generated to configure Elasticsearch security features on 05-05-2023 14:32:17
+# generated to configure Elasticsearch security features on 05-05-2023 08:34:35
 #
 # --------------------------------------------------------------------------------
 
@@ -104,7 +104,8 @@ xpack.security.transport.ssl:
   verification_mode: certificate
   keystore.path: certs/elastic-certificates.p12
   truststore.path: certs/elastic-certificates.p12
-# Discover existing nodes in the cluster
+# Create a new cluster with the current node only
+# Additional nodes can still join the cluster later
 discovery.seed_hosts: ["10.100.170.50", "10.100.170.51", "10.100.170.52"]
 cluster.initial_master_nodes: ["node1", "node2", "node3"]
 # Allow HTTP API connections from anywhere
@@ -114,4 +115,5 @@ http.host: 0.0.0.0
 # Allow other nodes to join the cluster from anywhere
 # Connections are encrypted and mutually authenticated
 transport.host: 0.0.0.0
+
 #----------------------- END SECURITY AUTO CONFIGURATION -------------------------
