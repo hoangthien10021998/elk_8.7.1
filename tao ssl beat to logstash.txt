@@ -1,0 +1,37 @@
+Create the CA:
+openssl genrsa -aes256 -out ca.key 4096
+openssl req -key ca.key -new -x509 -days 7300 -sha256 -extensions v3_ca -out ca.crt
+
+Create server certificate and key:
+openssl genrsa -out server.key 2048
+openssl req -new -key server.key -out server.csr
+openssl x509 -req -days 3650 -in server.csr -out server.crt -CA ca.crt -CAkey ca.key -set_serial 1
+
+Create client certificate and key:
+openssl genrsa -out client.key 2048
+openssl req -new -key client.key -out client.csr
+openssl x509 -req -days 3650 -in client.csr -out client.crt -CA ca.crt -CAkey ca.key -set_serial 1
+
+Java needs PKCS8 keys:
+openssl pkcs8 -topk8 -in server.key -nocrypt -inform PEM -outform PEM -out server.pk8
+=============================================
+trên filebeats:
+output.logstash:
+  hosts: ["logs.mycompany.com:5044"]
+  ssl.certificate_authorities: ["/etc/ca.crt"]
+  ssl.certificate: "/etc/client.crt"
+  ssl.key: "/etc/client.key"
+
+trên /etc/logstash/conf.d/nginx_error.conf
+input {
+  beats {
+    port => 5044
+    ssl => true
+    ssl_certificate_authorities => ["/etc/ca.crt"]
+    ssl_certificate => "/etc/server.crt"
+    ssl_key => "/etc/server.key"
+    ssl_verify_mode => "force_peer"
+  }
+}
+-----
+w51jIM3KR9-ojKBqZN2w-w :pass pck#12
