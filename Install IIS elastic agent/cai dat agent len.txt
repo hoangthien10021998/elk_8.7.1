@@ -1,0 +1,5 @@
+coppy cert vào thư mục nào đó trên server: elastticsearch-ca.pem vao server cai agent
+install vao server
+sau do tai ve https://www.elastic.co/downloads/elastic-agent
+giai nen ra va sửa file elastic-agent.yml như fole mẫu:
+.\elastic-agent.exe install --certificate-authorities=C:\SSLelastic\elasticsearch-ca.pem --insecure

@@ -1,0 +1,10 @@
+.\elastic-agent.exe install --certificate-authorities=C:\SSLelastic\elasticsearch-ca.pem --insecure
+
+
+https://www.elastic.co/downloads/elastic-agent
+
+
+
+Agent policy iis-hddt3app1
+
+iis-hddt3app1

@@ -1,0 +1,524 @@
+id: 84089880-f5f2-11ed-92e5-19064462a6d0
+revision: 2
+outputs:
+  default:
+    type: elasticsearch
+    hosts: [https://10.100.170.50:9200]
+    username: "elastic"
+    password: "LxNvPoCayp=XPeP9-hjn"
+output_permissions:
+  default:
+    _elastic_agent_monitoring:
+      indices:
+        - names:
+            - logs-elastic_agent.apm_server-default
+          privileges:
+            - auto_configure
+            - create_doc
+        - names:
+            - metrics-elastic_agent.apm_server-default
+          privileges:
+            - auto_configure
+            - create_doc
+        - names:
+            - logs-elastic_agent.auditbeat-default
+          privileges:
+            - auto_configure
+            - create_doc
+        - names:
+            - metrics-elastic_agent.auditbeat-default
+          privileges:
+            - auto_configure
+            - create_doc
+        - names:
+            - logs-elastic_agent.cloud_defend-default
+          privileges:
+            - auto_configure
+            - create_doc
+        - names:
+            - logs-elastic_agent.cloudbeat-default
+          privileges:
+            - auto_configure
+            - create_doc
+        - names:
+            - metrics-elastic_agent.cloudbeat-default
+          privileges:
+            - auto_configure
+            - create_doc
+        - names:
+            - logs-elastic_agent-default
+          privileges:
+            - auto_configure
+            - create_doc
+        - names:
+            - metrics-elastic_agent.elastic_agent-default
+          privileges:
+            - auto_configure
+            - create_doc
+        - names:
+            - metrics-elastic_agent.endpoint_security-default
+          privileges:
+            - auto_configure
+            - create_doc
+        - names:
+            - logs-elastic_agent.endpoint_security-default
+          privileges:
+            - auto_configure
+            - create_doc
+        - names:
+            - logs-elastic_agent.filebeat_input-default
+          privileges:
+            - auto_configure
+            - create_doc
+        - names:
+            - metrics-elastic_agent.filebeat_input-default
+          privileges:
+            - auto_configure
+            - create_doc
+        - names:
+            - logs-elastic_agent.filebeat-default
+          privileges:
+            - auto_configure
+            - create_doc
+        - names:
+            - metrics-elastic_agent.filebeat-default
+          privileges:
+            - auto_configure
+            - create_doc
+        - names:
+            - logs-elastic_agent.fleet_server-default
+          privileges:
+            - auto_configure
+            - create_doc
+        - names:
+            - metrics-elastic_agent.fleet_server-default
+          privileges:
+            - auto_configure
+            - create_doc
+        - names:
+            - logs-elastic_agent.heartbeat-default
+          privileges:
+            - auto_configure
+            - create_doc
+        - names:
+            - metrics-elastic_agent.heartbeat-default
+          privileges:
+            - auto_configure
+            - create_doc
+        - names:
+            - logs-elastic_agent.metricbeat-default
+          privileges:
+            - auto_configure
+            - create_doc
+        - names:
+            - metrics-elastic_agent.metricbeat-default
+          privileges:
+            - auto_configure
+            - create_doc
+        - names:
+            - logs-elastic_agent.osquerybeat-default
+          privileges:
+            - auto_configure
+            - create_doc
+        - names:
+            - metrics-elastic_agent.osquerybeat-default
+          privileges:
+            - auto_configure
+            - create_doc
+        - names:
+            - logs-elastic_agent.packetbeat-default
+          privileges:
+            - auto_configure
+            - create_doc
+        - names:
+            - metrics-elastic_agent.packetbeat-default
+          privileges:
+            - auto_configure
+            - create_doc
+    _elastic_agent_checks:
+      cluster:
+        - monitor
+    353014cb-0cca-4e2c-a45a-1f51495ab6b4:
+      indices:
+        - names:
+            - logs-system.auth-default
+          privileges:
+            - auto_configure
+            - create_doc
+        - names:
+            - logs-system.syslog-default
+          privileges:
+            - auto_configure
+            - create_doc
+        - names:
+            - logs-system.application-default
+          privileges:
+            - auto_configure
+            - create_doc
+        - names:
+            - logs-system.security-default
+          privileges:
+            - auto_configure
+            - create_doc
+        - names:
+            - logs-system.system-default
+          privileges:
+            - auto_configure
+            - create_doc
+        - names:
+            - metrics-system.cpu-default
+          privileges:
+            - auto_configure
+            - create_doc
+        - names:
+            - metrics-system.diskio-default
+          privileges:
+            - auto_configure
+            - create_doc
+        - names:
+            - metrics-system.filesystem-default
+          privileges:
+            - auto_configure
+            - create_doc
+        - names:
+            - metrics-system.fsstat-default
+          privileges:
+            - auto_configure
+            - create_doc
+        - names:
+            - metrics-system.load-default
+          privileges:
+            - auto_configure
+            - create_doc
+        - names:
+            - metrics-system.memory-default
+          privileges:
+            - auto_configure
+            - create_doc
+        - names:
+            - metrics-system.network-default
+          privileges:
+            - auto_configure
+            - create_doc
+        - names:
+            - metrics-system.process-default
+          privileges:
+            - auto_configure
+            - create_doc
+        - names:
+            - metrics-system.process.summary-default
+          privileges:
+            - auto_configure
+            - create_doc
+        - names:
+            - metrics-system.socket_summary-default
+          privileges:
+            - auto_configure
+            - create_doc
+        - names:
+            - metrics-system.uptime-default
+          privileges:
+            - auto_configure
+            - create_doc
+    f6ce60d5-acae-47cd-ab7d-0cc56f2af042:
+      indices:
+        - names:
+            - logs-iis.access-default
+          privileges:
+            - auto_configure
+            - create_doc
+        - names:
+            - logs-iis.error-default
+          privileges:
+            - auto_configure
+            - create_doc
+        - names:
+            - metrics-iis.application_pool-default
+          privileges:
+            - auto_configure
+            - create_doc
+        - names:
+            - metrics-iis.webserver-default
+          privileges:
+            - auto_configure
+            - create_doc
+        - names:
+            - metrics-iis.website-default
+          privileges:
+            - auto_configure
+            - create_doc
+agent:
+  download:
+    sourceURI: 'https://artifacts.elastic.co/downloads/'
+  monitoring:
+    enabled: true
+    use_output: default
+    namespace: default
+    logs: true
+    metrics: true
+  features: {}
+inputs:
+  - id: logfile-system-353014cb-0cca-4e2c-a45a-1f51495ab6b4
+    name: system-9
+    revision: 1
+    type: logfile
+    use_output: default
+    meta:
+      package:
+        name: system
+        version: 1.28.0
+    data_stream:
+      namespace: default
+    package_policy_id: 353014cb-0cca-4e2c-a45a-1f51495ab6b4
+    streams:
+      - id: logfile-system.auth-353014cb-0cca-4e2c-a45a-1f51495ab6b4
+        data_stream:
+          dataset: system.auth
+          type: logs
+        ignore_older: 72h
+        paths:
+          - /var/log/auth.log*
+          - /var/log/secure*
+        exclude_files:
+          - .gz$
+        multiline:
+          pattern: ^\s
+          match: after
+        tags:
+          - system-auth
+        processors:
+          - add_locale: null
+      - id: logfile-system.syslog-353014cb-0cca-4e2c-a45a-1f51495ab6b4
+        data_stream:
+          dataset: system.syslog
+          type: logs
+        paths:
+          - /var/log/messages*
+          - /var/log/syslog*
+          - /var/log/system*
+        exclude_files:
+          - .gz$
+        multiline:
+          pattern: ^\s
+          match: after
+        processors:
+          - add_locale: null
+        ignore_older: 72h
+  - id: winlog-system-353014cb-0cca-4e2c-a45a-1f51495ab6b4
+    name: system-9
+    revision: 1
+    type: winlog
+    use_output: default
+    meta:
+      package:
+        name: system
+        version: 1.28.0
+    data_stream:
+      namespace: default
+    package_policy_id: 353014cb-0cca-4e2c-a45a-1f51495ab6b4
+    streams:
+      - id: winlog-system.application-353014cb-0cca-4e2c-a45a-1f51495ab6b4
+        name: Application
+        data_stream:
+          dataset: system.application
+          type: logs
+        condition: '${host.platform} == ''windows'''
+        ignore_older: 72h
+      - id: winlog-system.security-353014cb-0cca-4e2c-a45a-1f51495ab6b4
+        name: Security
+        data_stream:
+          dataset: system.security
+          type: logs
+        condition: '${host.platform} == ''windows'''
+        ignore_older: 72h
+      - id: winlog-system.system-353014cb-0cca-4e2c-a45a-1f51495ab6b4
+        name: System
+        data_stream:
+          dataset: system.system
+          type: logs
+        condition: '${host.platform} == ''windows'''
+        ignore_older: 72h
+  - id: system/metrics-system-353014cb-0cca-4e2c-a45a-1f51495ab6b4
+    name: system-9
+    revision: 1
+    type: system/metrics
+    use_output: default
+    meta:
+      package:
+        name: system
+        version: 1.28.0
+    data_stream:
+      namespace: default
+    package_policy_id: 353014cb-0cca-4e2c-a45a-1f51495ab6b4
+    streams:
+      - id: system/metrics-system.cpu-353014cb-0cca-4e2c-a45a-1f51495ab6b4
+        data_stream:
+          dataset: system.cpu
+          type: metrics
+        metricsets:
+          - cpu
+        cpu.metrics:
+          - percentages
+          - normalized_percentages
+        period: 10s
+      - id: system/metrics-system.diskio-353014cb-0cca-4e2c-a45a-1f51495ab6b4
+        data_stream:
+          dataset: system.diskio
+          type: metrics
+        metricsets:
+          - diskio
+        diskio.include_devices: null
+        period: 10s
+      - id: system/metrics-system.filesystem-353014cb-0cca-4e2c-a45a-1f51495ab6b4
+        data_stream:
+          dataset: system.filesystem
+          type: metrics
+        metricsets:
+          - filesystem
+        period: 1m
+        processors:
+          - drop_event.when.regexp:
+              system.filesystem.mount_point: ^/(sys|cgroup|proc|dev|etc|host|lib|snap)($|/)
+      - id: system/metrics-system.fsstat-353014cb-0cca-4e2c-a45a-1f51495ab6b4
+        data_stream:
+          dataset: system.fsstat
+          type: metrics
+        metricsets:
+          - fsstat
+        period: 1m
+        processors:
+          - drop_event.when.regexp:
+              system.fsstat.mount_point: ^/(sys|cgroup|proc|dev|etc|host|lib|snap)($|/)
+      - id: system/metrics-system.load-353014cb-0cca-4e2c-a45a-1f51495ab6b4
+        data_stream:
+          dataset: system.load
+          type: metrics
+        metricsets:
+          - load
+        condition: '${host.platform} != ''windows'''
+        period: 10s
+      - id: system/metrics-system.memory-353014cb-0cca-4e2c-a45a-1f51495ab6b4
+        data_stream:
+          dataset: system.memory
+          type: metrics
+        metricsets:
+          - memory
+        period: 10s
+      - id: system/metrics-system.network-353014cb-0cca-4e2c-a45a-1f51495ab6b4
+        data_stream:
+          dataset: system.network
+          type: metrics
+        metricsets:
+          - network
+        period: 10s
+        network.interfaces: null
+      - id: system/metrics-system.process-353014cb-0cca-4e2c-a45a-1f51495ab6b4
+        data_stream:
+          dataset: system.process
+          type: metrics
+        metricsets:
+          - process
+        period: 10s
+        process.include_top_n.by_cpu: 5
+        process.include_top_n.by_memory: 5
+        process.cmdline.cache.enabled: true
+        process.cgroups.enabled: false
+        process.include_cpu_ticks: false
+        processes:
+          - .*
+      - id: >-
+          system/metrics-system.process.summary-353014cb-0cca-4e2c-a45a-1f51495ab6b4
+        data_stream:
+          dataset: system.process.summary
+          type: metrics
+        metricsets:
+          - process_summary
+        period: 10s
+      - id: >-
+          system/metrics-system.socket_summary-353014cb-0cca-4e2c-a45a-1f51495ab6b4
+        data_stream:
+          dataset: system.socket_summary
+          type: metrics
+        metricsets:
+          - socket_summary
+        period: 10s
+      - id: system/metrics-system.uptime-353014cb-0cca-4e2c-a45a-1f51495ab6b4
+        data_stream:
+          dataset: system.uptime
+          type: metrics
+        metricsets:
+          - uptime
+        period: 10s
+  - id: logfile-iis-f6ce60d5-acae-47cd-ab7d-0cc56f2af042
+    name: iis-hddt10
+    revision: 1
+    type: logfile
+    use_output: default
+    meta:
+      package:
+        name: iis
+        version: 1.10.0
+    data_stream:
+      namespace: default
+    package_policy_id: f6ce60d5-acae-47cd-ab7d-0cc56f2af042
+    streams:
+      - id: logfile-iis.access-f6ce60d5-acae-47cd-ab7d-0cc56f2af042
+        data_stream:
+          dataset: iis.access
+          type: logs
+        ignore_older: 72h
+        paths:
+          - 'C:/inetpub/logs/LogFiles/*/*.log'
+        tags:
+          - iis-access
+        exclude_files:
+          - .gz$
+        exclude_lines:
+          - ^#
+      - id: logfile-iis.error-f6ce60d5-acae-47cd-ab7d-0cc56f2af042
+        data_stream:
+          dataset: iis.error
+          type: logs
+        ignore_older: 72h
+        paths:
+          - 'C:/Windows/System32/LogFiles/HTTPERR/*.log'
+        tags:
+          - iis-error
+        exclude_files:
+          - .gz$
+        exclude_lines:
+          - ^#
+  - id: iis/metrics-iis-f6ce60d5-acae-47cd-ab7d-0cc56f2af042
+    name: iis-hddt10
+    revision: 1
+    type: iis/metrics
+    use_output: default
+    meta:
+      package:
+        name: iis
+        version: 1.10.0
+    data_stream:
+      namespace: default
+    package_policy_id: f6ce60d5-acae-47cd-ab7d-0cc56f2af042
+    streams:
+      - id: iis/metrics-iis.application_pool-f6ce60d5-acae-47cd-ab7d-0cc56f2af042
+        data_stream:
+          dataset: iis.application_pool
+          type: metrics
+        metricsets:
+          - application_pool
+        period: 10s
+      - id: iis/metrics-iis.webserver-f6ce60d5-acae-47cd-ab7d-0cc56f2af042
+        data_stream:
+          dataset: iis.webserver
+          type: metrics
+        metricsets:
+          - webserver
+        period: 10s
+      - id: iis/metrics-iis.website-f6ce60d5-acae-47cd-ab7d-0cc56f2af042
+        data_stream:
+          dataset: iis.website
+          type: metrics
+        metricsets:
+          - website
+        period: 10s
